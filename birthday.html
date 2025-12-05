@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 本日のお姫様 🎉</title>
+    <style>
+        /* ページ全体のスタイル */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffe0e6; /* 淡いピンクの背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* 紙吹雪がページ外へ出るように */
+            color: #333;
+            text-align: center;
+        }
+
+        /* メインコンテナ */
+        .container {
+            background: #fff;
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10;
+            max-width: 600px; /* メッセージの読みやすさを確保 */
+            /* ★★★ ここから追加/修正 ★★★ */
+            max-height: 80vh; /* 画面の高さの80%を最大値とする */
+            overflow-y: auto; /* 縦方向のコンテンツがはみ出したらスクロールバーを表示 */
+            /* ★★★ ここまで追加/修正 ★★★ */
+            }
+
+        /* メインの見出し */
+        h1 {
+            font-size: 3em;
+            color: #ff69b4; /* ホットピンク */
+            margin-bottom: 10px;
+            animation: bounceIn 1s ease-out; /* 飛び出すアニメーション */
+        }
+
+        /* メッセージボタンのスタイル */
+        #playButton {
+            background-color: #ff69b4; /* ホットピンク */
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+        #playButton:hover {
+            background-color: #ff4d94; /* ホバーで少し濃く */
+        }
+
+        /* 飛び出すアニメーションの定義 */
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        /* メッセージエリアの初期状態（非表示） */
+        .message-hidden {
+            display: none;
+            opacity: 0;
+        }
+        
+        /* メッセージエリアの表示状態（フェードイン） */
+        .message-visible {
+            display: block;
+            animation: fadeIn 2s forwards; 
+        }
+
+        /* フェードインアニメーションの定義 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* メッセージ内の段落 */
+        .container p {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 15px;
+            line-height: 1.8;
+            text-align: left; /* 長文を読みやすく */
+        }
+        
+        /* 紙吹雪のスタイル */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            animation: fall linear infinite;
+            border-radius: 50%;
+            opacity: 0.8;
+            z-index: 5;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotateZ(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotateZ(360deg); opacity: 0; }
+        }
+
+        /* 紙吹雪の色のバリエーションと配置 */
+        .confetti:nth-child(1) { left: 10%; background: #ffcc00; animation-duration: 5s; animation-delay: 0s; }
+        .confetti:nth-child(2) { left: 20%; background: #ff00ff; animation-duration: 7s; animation-delay: 1s; }
+        .confetti:nth-child(3) { left: 30%; background: #00ffcc; animation-duration: 6s; animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+
+    <div class="container">
+        <h1>びびお誕生日おめでと🎂</h1>
+        
+        <button id="playButton" onclick="revealMessage()">
+            🎁 クリックしてメッセージを開く 🎁
+        </button>
+        
+        <div id="longMessageArea" class="message-hidden">
+            <p style="text-align: center; font-weight: bold; font-size: 1.2em; color: #ff69b4;">
+                びびいへ
+            </p>
+            <p>
+                お誕生日おめでとう！<br>
+                最近は就活とか試験勉強であまりびびと話せなかったけど、話すたびにいつも元気もらってるよ！構ってもらえて助かる～！笑
+            </p>
+            <p>
+                今回せっかくの誕生日、なにか特別なことで日頃の感謝伝えれないか考えた結果、スキル生かしてWebで作ってみました🙌
+                少しでも配信活動の思い出に残ったらうれしいな笑
+            </p>
+            <p>
+                普段は生意気で少し抜けてる部分もあるけど笑<br>
+                それでも優しくて可愛くて素敵なお姉さんだと思います！！<br>
+                2年半見てきた僕が言うので自信もってください😗
+            </p>
+            <p>これから働いてから忙しくなると思うけど配信してたら顔だけでも出しにくるから絶対構ってね😘<br>
+               どれだけびびが配信するかわからないけど、僕はいつまでもびびのこと応援してます<br>
+               大好きだよ～！
+            </p>
+            
+            <p style="font-style: italic; margin-top: 30px; text-align: right;">
+                ちょこちろるより
+            </p>
+        </div>
+        </div>
+    
+    <script>
+        function revealMessage() {
+            var button = document.getElementById('playButton');
+            var messageArea = document.getElementById('longMessageArea');
+            
+            // ボタンを非表示にする
+            button.style.display = 'none';
+            
+            // 非表示クラスを解除し、表示クラスを適用してメッセージを表示する
+            messageArea.classList.remove('message-hidden');
+            messageArea.classList.add('message-visible');
+        }
+    </script>
+</body>
+</html>
